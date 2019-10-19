@@ -16,11 +16,15 @@ use Illuminate\Http\Request;
 Route::get('/', function () {
     return view('pages/MainPage');
 });
+/*
+* AUTH routes!
+*/
 Route::get('/register',function (){
     return view('auth/register');
 });
+
+Route::get('GoogleRedirect','auth\LoginController@RedirectGoogle');
+
 Route::post('/register','auth\LoginController@register');
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index');

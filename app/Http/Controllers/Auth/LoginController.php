@@ -51,7 +51,7 @@ class LoginController extends Controller
         $credentials = [
             'email'    => $request->input('email'),
             'password' => $request->input('password'),
-            'name'     => $request->input('name'),
+            'first_name'     => $request->input('name'),
         ];
         
         //$user = Sentinel::register($credentials);
