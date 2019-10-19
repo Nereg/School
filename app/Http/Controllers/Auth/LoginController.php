@@ -64,6 +64,11 @@ class LoginController extends Controller
 
     }
 
+    /*
+    * Redirect user to google auth page
+    * 
+    */
+
     /**
      * Create a new controller instance.
      *
