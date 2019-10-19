@@ -1,5 +1,6 @@
 <?php
 use Illuminate\Http\Request;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,7 +24,9 @@ Route::get('/register',function (){
     return view('auth/register');
 });
 
-Route::get('GoogleRedirect','auth\LoginController@RedirectGoogle');
+Route::any('/GoogleCallback','auth\LoginController@handleProviderCallback');
+
+Route::get('/GoogleRedirect','auth\LoginController@RedirectGoogle');
 
 Route::post('/register','auth\LoginController@register');
 

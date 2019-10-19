@@ -8,6 +8,9 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 
+
+use Socialite;
+
 class LoginController extends Controller
 {
     /*
@@ -66,8 +69,24 @@ class LoginController extends Controller
 
     /*
     * Redirect user to google auth page
-    * 
+    * @return Response
     */
+    public function RedirectGoogle ()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+
+    /**
+     * Obtain the user information from Google.
+     *
+     * @return Response
+     */
+    public function handleProviderCallback()
+    {
+        $user = Socialite::driver('google')->user();
+        \var_dump($user);
+        return 'DONE!';
+    }
 
     /**
      * Create a new controller instance.
