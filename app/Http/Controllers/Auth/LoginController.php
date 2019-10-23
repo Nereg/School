@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 
 
+
 use Socialite;
 
 class LoginController extends Controller
@@ -83,7 +84,7 @@ class LoginController extends Controller
      */
     public function handleProviderCallback()
     {
-        $user = Socialite::driver('google')->user();
+        $user = Socialite::driver('google')->stateless()->user();
         \var_dump($user);
         return 'DONE!';
     }
