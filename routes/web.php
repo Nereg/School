@@ -23,6 +23,9 @@ Route::get('/', function () {
 Route::get('/register',function (){
     return view('auth/register');
 });
+Route::get('/login',function(){
+    return view('pages/login');
+});
 
 Route::any('/GoogleCallback','auth\LoginController@handleProviderCallback');
 
@@ -30,4 +33,4 @@ Route::get('/GoogleRedirect','auth\LoginController@RedirectGoogle');
 
 Route::post('/register','auth\LoginController@register');
 
-Auth::routes();
+
