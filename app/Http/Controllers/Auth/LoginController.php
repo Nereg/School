@@ -27,6 +27,37 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
+    /*
+    * login user from form
+    * @param mixed Request 
+    * @return mixed Response
+    */
+
+    public function Login (Request $request)
+    {
+        $email = $request->get('email');
+        $pass = $request->get('password');
+        $tick = $request->get('remember');
+        $tick = isset($tick); //true if set ('on' is value) and false is isn`t set
+        if (!\isEmptyOrNullString($email) or !\isEmptyOrNullString($pass)) //check if all needed stuff is empty or string with 0 chars if so fail the login
+        {
+            if($_ENV['APP_DEBUG'])var_dump($request->all());
+            return \view('pages/login')->with('error','Не введено одно из полей. Этого не должно просиходить при обычной работе. Обратитесь к Создателю.');
+        }
+        else
+        {
+            $credentials = [ //make array with data for Sentinel
+                'email' => $email,
+                'password' => $pass
+            ];
+            $login = Sentinel::authenticate($credentials,$tick); //Auth user
+
+            if($_ENV['APP_DEBUG'])var_dump($login);
+            return \view('pages/login');
+        }
+    }
+
+
     /**
      * Register user
      * @param string user`s email 
@@ -62,6 +93,7 @@ class LoginController extends Controller
     {
         return Socialite::driver('google')->redirect();
     }
+
 
     /**
      * Obtain the user information from Google.

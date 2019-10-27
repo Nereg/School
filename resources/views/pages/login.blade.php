@@ -79,27 +79,28 @@ form
     <h5 class="text-center text">
       Войти
     </h5>
-    <div class="error text-center">
-     Типо ошибка ;)
-    </div>
-    <div class="good text-center">
-      А ту все хорошо
-    </div>
+    @if ( isset($error))
+      <div class="error text-center">
+        {{$error}}
+       </div>
+    @endif
     <!--Card content-->
     <div class="card-body px-lg-5 pt-0">
   
       <!-- Form -->
-      <form class="text-center" action="#!">
-  
+    <form class="text-center" action="{{url('/login')}}" method="POST">
+      {{ csrf_field() }}
         <!-- Email -->
+        {{ csrf_field() }}
         <div class="md-form">
-          <input type="email" id="materialLoginFormEmail" class="form-control">
+            {{ csrf_field() }}
+          <input type="email" id="materialLoginFormEmail" name="email" class="form-control">
           <label for="materialLoginFormEmail">Електронная почта</label>
         </div>
-  
         <!-- Password -->
         <div class="md-form">
-          <input type="password" id="materialLoginFormPassword" class="form-control">
+            {{ csrf_field() }}
+          <input type="password" id="materialLoginFormPassword" name="password" class="form-control">
           <label for="materialLoginFormPassword">Пароль</label>
         </div>
   
@@ -107,7 +108,7 @@ form
           <div>
             <!-- Remember me -->
             <div class="form-check">
-              <input type="checkbox" class="form-check-input" id="materialLoginFormRemember">
+              <input type="checkbox" checked="checked" class="form-check-input" name="remember" id="materialLoginFormRemember">
               <label class="form-check-label" for="materialLoginFormRemember">Запомнить меня</label>
             </div>
           </div>
@@ -130,7 +131,7 @@ form
         <a type="button" class="btn-floating btn-tw btn-sm">
           <i class="fab fa-google"></i>
         </a>
-      </form>
+    </form>
       <!-- Form -->
   
     </div>

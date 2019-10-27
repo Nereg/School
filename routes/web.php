@@ -27,6 +27,8 @@ Route::get('/login',function(){
     return view('pages/login');
 });
 
+Route::post('/login','auth\LoginController@Login');
+
 Route::any('/GoogleCallback','auth\LoginController@handleProviderCallback');
 
 Route::get('/GoogleRedirect','auth\LoginController@RedirectGoogle');
