@@ -7,6 +7,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
+use Illuminate\Http\Request;
+use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
+use Validator;
+
 class RegisterController extends Controller
 {
     /*
@@ -30,6 +34,40 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+    }
+
+    /**
+    * Register user 
+    * @param mixed Request
+    */
+    public function Register(Request $request)
+    {
+        $messages = [ // Some errors messages in Russian :\
+            'email.required' => 'Нам надо знать ваш e-mail!',
+            'email.email' => 'Вы ввели неправильную електронную почту!',
+            'email.unique' => 'Кто-то уже зарегистрирован под такой електронной почтой!',
+            'passwordConfirm.same' => 'Подтверждение пароля и пароль не совпадают!',
+            'password.min' => 'Для вашей безопасности пароль должен быть минимум 6 символов!',
+            'required' => 'Вы что-то не ввели!',
+        ];
+        $rules = [ //rules for vallidation
+            'email' => 'required|email|max:255|unique:users',
+            'password' => 'required|min:6|',
+            'name' => 'alpha_dash',
+            'passwordConfirm' => 'same:password'
+        ];
+        $validator = Validator::make($request->all(),$rules,$messages);
+        if ($validator->fails()) {
+            return view('pages/register')
+                        ->withErrors($validator);
+          }
+        $credentials =[
+            'email'=>$request->get('email'),
+            'password'=>$request->get('password'),
+            'first_name'=>$request->get('name')
+        ];
+        $user = Sentinel::register($credentials);
+        return view('pages/login')->with('good','Теперь вы можете войти в систему.');
     }
 
     /**

@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 
 
-
+use Validator;
 use Socialite;
 
 class LoginController extends Controller
@@ -35,26 +35,30 @@ class LoginController extends Controller
 
     public function Login (Request $request)
     {
-        $email = $request->get('email');
-        $pass = $request->get('password');
+        $messages = [ // Some errors messages in Russian :\
+            'email.required' => 'Нам надо знать ваш e-mail!',
+            'email.email' => 'Вы ввели неправильную електронную почту!',
+            'password.min' => 'Для вашей безопасности пароль должен быть минимум 6 символов!',
+            'required' => 'Вы что-то не ввели!',
+        ];
+        $rules = [ //rules for vallidation
+            'email' => 'required|email|max:255',
+            'password' => 'required|min:6|',
+        ];
         $tick = $request->get('remember');
-        $tick = isset($tick); //true if set ('on' is value) and false is isn`t set
-        if (!\isEmptyOrNullString($email) or !\isEmptyOrNullString($pass)) //check if all needed stuff is empty or string with 0 chars if so fail the login
-        {
-            if($_ENV['APP_DEBUG'])var_dump($request->all());
-            return \view('pages/login')->with('error','Не введено одно из полей. Этого не должно просиходить при обычной работе. Обратитесь к Создателю.');
+        $tick = isset($tick);
+        $validator = Validator::make($request->all(),$rules,$messages);
+        if ($validator->fails()) {
+            return view('pages/login')
+                        ->withErrors($validator);
         }
-        else
-        {
-            $credentials = [ //make array with data for Sentinel
-                'email' => $email,
-                'password' => $pass
-            ];
-            $login = Sentinel::authenticate($credentials,$tick); //Auth user
-
-            if($_ENV['APP_DEBUG'])var_dump($login);
-            return \view('pages/login');
-        }
+        $credentials =[
+            'email'=>$request->get('email'),
+            'password'=>$request->get('password'),
+        ];
+        $user = Sentinel::authenticate($credentials,$tick);
+        var_dump($user);
+        return 'test';
     }
 
 

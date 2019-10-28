@@ -21,18 +21,17 @@ Route::get('/', function () {
 * AUTH routes!
 */
 Route::get('/register',function (){
-    return view('auth/register');
+    return view('pages/register');
 });
 Route::get('/login',function(){
     return view('pages/login');
 });
 
 Route::post('/login','auth\LoginController@Login');
+Route::post('/register','auth\RegisterController@Register');
 
 Route::any('/GoogleCallback','auth\LoginController@handleProviderCallback');
 
 Route::get('/GoogleRedirect','auth\LoginController@RedirectGoogle');
-
-Route::post('/register','auth\LoginController@register');
 
 

@@ -52,6 +52,7 @@ form
 }
 .error
 {
+  margin-top: 10px;
   color: white;
   background-color: rgba(250,0,0,.50);
   box-shadow: 0 2px 5px 0 rgba(0,0,0,.16),0 2px 10px 0 rgba(0,0,0,.12);
@@ -61,6 +62,7 @@ form
 }
 .good
 {
+  margin-top: 10px;
   color: white;
   background-color: rgba(0,250,0,.50);
   box-shadow: 0 2px 5px 0 rgba(0,0,0,.16),0 2px 10px 0 rgba(0,0,0,.12);
@@ -79,11 +81,14 @@ form
     <h5 class="text-center text">
       Войти
     </h5>
-    @if ( isset($error))
-      <div class="error text-center">
-        {{$error}}
-       </div>
-    @endif
+    @if (count($errors) > 0)
+	@foreach ($errors->all() as $error)
+	  	<div class="error">{{$error}}</div>
+	@endforeach
+@endif
+    @isset($good)
+        <div class="good">{{$good}}</div>
+    @endisset
     <!--Card content-->
     <div class="card-body px-lg-5 pt-0">
   
@@ -123,7 +128,7 @@ form
   
         <!-- Register -->
         <p>Не зарегистрированы ?
-          <a href="">Зарегистрироваться</a>
+        <a href="{{url('/register')}}">Зарегистрироваться</a>
         </p>
   
         <!-- Social login -->
