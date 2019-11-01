@@ -56,37 +56,25 @@ class LoginController extends Controller
             'email'=>$request->get('email'),
             'password'=>$request->get('password'),
         ];
-        $user = Sentinel::authenticate($credentials,$tick);
-        var_dump($user);
-        return 'test';
-    }
-
-
-    /**
-     * Register user
-     * @param string user`s email 
-     * @param string Password of user
-     * @return void
-     */
-    public function register(Request $request)
-    {
-        $user = Sentinel::findByCredentials(['email'=>$request->input('email')]);
-        //var_export($request->all());
-        //return "Hello from controller !";
-        $credentials = [
-            'email'    => $request->input('email'),
-            'password' => $request->input('password'),
-            'first_name'     => $request->input('name'),
-        ];
-        
-        //$user = Sentinel::register($credentials);
-        if (!$user->exist)
+        try
         {
-            return 'User exsist';
+            $user = Sentinel::authenticate($credentials,$tick);
+            if ($user === false) // if failed 
+            {
+                return view('pages/login')->with('error','Похоже что-то пошло не так. Возможно ваш аккаунт еще не зарегистрирован.');
+            }
+            $user = Sentinel::Login($user,$tick);//yeah weird logic 
         }
-        var_dump($user);
-        return 'hello!';
-
+        catch (NotActivatedException $e)
+        {
+            return view('pages/login')->with('error','Ваш аккаунт еще не активирован.');
+        }
+        catch (Exeption $e)
+        {
+            var_dump($e);
+            return view('pages/login')->with('error','Похоже что-то пошло уж совсем не так. пожалуйста обратеитесь ко мне за дальнейшей помощью и прикрепите то что вы видите вверху.');
+        }
+        return \response('Похоже что вы залогинились!');
     }
 
     /*
@@ -108,7 +96,24 @@ class LoginController extends Controller
     {
         $user = Socialite::driver('google')->stateless()->user();
         \var_dump($user);
-        return 'DONE!';
+        $name = $user->getName();
+        $email = $user->getEmail();
+        $avatarUrl = $user->getAvatar();
+        $Id =  $user->getId();
+        $credentials = [
+            'last_name' => $Id
+        ];
+        $LocalUser = Sentinel::findByCredentials($credentials);
+        if ($LocalUser === false) // if failed 
+        {
+            var_dump($credentials);
+            var_dump($Id);
+            var_dump($LocalUser);
+            //return \redirect('/register')->with(['good'=>'Теперь вам всего лишь осталось придумать пароль!','email'=>var_dump($LocalUser),'name'=>$name,'GId'=>$Id]);
+        }
+        var_dump($LocalUser);
+        Sentinel::login($LocalUser,true);
+
     }
 
     /**

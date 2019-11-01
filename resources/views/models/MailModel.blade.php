@@ -15,14 +15,6 @@
   <link href="css/mdb.min.css" rel="stylesheet">
   <!-- Your custom styles (optional) -->
   <link href="css/style.min.css" rel="stylesheet">
-  <style type="text/css">
-    @media (min-width: 800px) and (max-width: 850px) {
-      .navbar:not(.top-nav-collapse) {
-        background: #1C2331 !important;
-      }
-    }
-
-  </style>
 </head>
 
 <body>
@@ -44,41 +36,11 @@
 
       <!-- Links -->
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-        <!-- Left -->
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-          <a class="nav-link" href="{{url('/')}}">Home
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://mdbootstrap.com/docs/jquery/" target="_blank">About MDB</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://mdbootstrap.com/docs/jquery/getting-started/download/" target="_blank">Free
-              download</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://mdbootstrap.com/education/bootstrap/" target="_blank">Free tutorials</a>
-          </li>
-        </ul>
-
         <!-- Right -->
         <ul class="navbar-nav nav-flex-icons">
           <li class="nav-item">
             <a href="https://www.facebook.com/mdbootstrap" class="nav-link" target="_blank">
               <i class="fab fa-github-f"></i>
-            </a>
-          </li>
-          <li class="nav-item">
-          <a href="{{url('/register')}}" class="nav-link" target="_blank">
-              Зарегистрироваться
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="{{url('/login')}}" class="nav-link border border-light rounded">
-              Войти
             </a>
           </li>
         </ul>

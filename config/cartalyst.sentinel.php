@@ -132,8 +132,6 @@ return [
     */
 
     'checkpoints' => [
-
-        'throttle',
         'activation',
 
     ],

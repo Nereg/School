@@ -20,16 +20,25 @@ Route::get('/', function () {
 /*
 * AUTH routes!
 */
+//Register route
 Route::get('/register',function (){
     return view('pages/register');
 });
+// For POST from form
+Route::post('/register','auth\RegisterController@Register');
+
+
 Route::get('/login',function(){
     return view('pages/login');
 });
 
 Route::post('/login','auth\LoginController@Login');
-Route::post('/register','auth\RegisterController@Register');
 
+//Activation route
+Route::get('/activate/{id}/{code}','ActivationController@Activate');
+/* 
+* Social auth routes!
+*/
 Route::any('/GoogleCallback','auth\LoginController@handleProviderCallback');
 
 Route::get('/GoogleRedirect','auth\LoginController@RedirectGoogle');

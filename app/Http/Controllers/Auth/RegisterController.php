@@ -9,8 +9,8 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 
 use Illuminate\Http\Request;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
-use Validator;
-
+use Queue;
+use App\Jobs\SendReminderEmail;
 class RegisterController extends Controller
 {
     /*
@@ -53,7 +53,6 @@ class RegisterController extends Controller
         $rules = [ //rules for vallidation
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|',
-            'name' => 'alpha_dash',
             'passwordConfirm' => 'same:password'
         ];
         $validator = Validator::make($request->all(),$rules,$messages);
@@ -64,39 +63,12 @@ class RegisterController extends Controller
         $credentials =[
             'email'=>$request->get('email'),
             'password'=>$request->get('password'),
-            'first_name'=>$request->get('name')
+            'first_name'=>$request->get('name'),
+            'last_name' => $request->get('GId'), //yeah I'm to lazy to make new migration
         ];
         $user = Sentinel::register($credentials);
-        return view('pages/login')->with('good','Теперь вы можете войти в систему.');
-    }
-
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
-        ]);
-    }
-
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return User
-     */
-    protected function create(array $data)
-    {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
+        $user = json_decode($user);
+        dispatch(new SendReminderEmail($user->id));
+        return \redirect('/')->with('good','Теперь вы можете войти в систему.');
     }
 }

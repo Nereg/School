@@ -87,7 +87,9 @@ form
 	  	<div class="error">{{$error}}</div>
 	@endforeach
 @endif
-    
+@isset($good)
+<div class="good">{{$good}}</div>
+@endisset
 				<!--Card content-->
 				<div class="card-body px-lg-5 pt-0">
 					<!-- Form -->
@@ -96,24 +98,25 @@ form
                       
 						<!-- name-->
 						<div class="md-form">                      
-							<input type="text" id="materialLoginFormEmail" name="name" class="form-control">
+							<input type="text" id="materialLoginFormEmail" name="name" class="form-control" required value="@if (session('name')){{ session('name') }}@endif">
 								<label for="materialLoginFormEmail">Имя</label>
 							</div>
 							<!-- Email -->
 							<div class="md-form">
-								<input type="email" id="materialLoginFormEmail" name="email" class="form-control">
+								<input type="email" id="materialLoginFormEmail" name="email" class="form-control" required value="@if (session('email')){{ session('email') }}@endif">
 									<label for="materialLoginFormEmail">Електронная почта</label>
 								</div>
 								<!-- Password -->
 								<div class="md-form">
-									<input type="password" id="materialLoginFormPassword" name="password" class="form-control">
+									<input type="password" id="materialLoginFormPassword" name="password" class="form-control" required>
 										<label for="materialLoginFormPassword">Пароль</label>
 									</div>
 									<!-- Password confirmation-->
 									<div class="md-form">
-										<input type="password" id="materialLoginFormPassword" name="passwordConfirm" class="form-control">
+										<input type="password" id="materialLoginFormPassword" name="passwordConfirm" class="form-control" required>
 											<label for="materialLoginFormPassword">Подтверждение пароля</label>
-										</div>
+									</div>
+									<input type="hidden" name="GId" value="@if (session('GId')){{ session('GId') }}@endif">
 											<!-- Sign in button -->
 											<button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Войти</button>
 											<!-- Register -->

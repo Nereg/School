@@ -89,6 +89,9 @@ form
     @isset($good)
         <div class="good">{{$good}}</div>
     @endisset
+    @isset($error)
+    <div class="error">{{$error}}</div>
+@endisset
     <!--Card content-->
     <div class="card-body px-lg-5 pt-0">
   
@@ -99,13 +102,13 @@ form
         {{ csrf_field() }}
         <div class="md-form">
             {{ csrf_field() }}
-          <input type="email" id="materialLoginFormEmail" name="email" class="form-control">
+          <input type="email" id="materialLoginFormEmail" name="email" class="form-control" required=""> 
           <label for="materialLoginFormEmail">Електронная почта</label>
         </div>
         <!-- Password -->
         <div class="md-form">
             {{ csrf_field() }}
-          <input type="password" id="materialLoginFormPassword" name="password" class="form-control">
+          <input type="password" id="materialLoginFormPassword" name="password" class="form-control" required>
           <label for="materialLoginFormPassword">Пароль</label>
         </div>
   
@@ -133,7 +136,7 @@ form
   
         <!-- Social login -->
         <p>или войти с помощью:</p>
-        <a type="button" class="btn-floating btn-tw btn-sm">
+        <a type="button" class="btn-floating btn-tw btn-sm" href="{{url('/GoogleRedirect')}}">
           <i class="fab fa-google"></i>
         </a>
     </form>
