@@ -26,14 +26,16 @@ Route::get('/register',function (){
 });
 // For POST from form
 Route::post('/register','auth\RegisterController@Register');
-
-
+// Login route
 Route::get('/login',function(){
     return view('pages/login');
 });
-
+// Login route for POST
 Route::post('/login','auth\LoginController@Login');
-
+//checher of logining
+Route::get('/check',function (){
+    return view('pages/check');
+});
 //Activation route
 Route::get('/activate/{id}/{code}','ActivationController@Activate');
 /* 

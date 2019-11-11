@@ -61,20 +61,20 @@ class LoginController extends Controller
             $user = Sentinel::authenticate($credentials,$tick);
             if ($user === false) // if failed 
             {
-                return view('pages/login')->with('error','Похоже что-то пошло не так. Возможно ваш аккаунт еще не зарегистрирован.');
+                return view('pages/login')->with('error','Неверный логин или пароль!');
             }
             $user = Sentinel::Login($user,$tick);//yeah weird logic 
         }
-        catch (NotActivatedException $e)
+        catch (\Cartalyst\Sentinel\Checkpoints\NotActivatedException $e)
         {
-            return view('pages/login')->with('error','Ваш аккаунт еще не активирован.');
+            return view('pages/login')->with('error','Ваш аккаунт еще не активирован. Пожалуйста проверьте своб почту.');
         }
         catch (Exeption $e)
         {
             var_dump($e);
             return view('pages/login')->with('error','Похоже что-то пошло уж совсем не так. пожалуйста обратеитесь ко мне за дальнейшей помощью и прикрепите то что вы видите вверху.');
         }
-        return \response('Похоже что вы залогинились!');
+        return \redirect('/check');
     }
 
     /*
@@ -100,19 +100,18 @@ class LoginController extends Controller
         $email = $user->getEmail();
         $avatarUrl = $user->getAvatar();
         $Id =  $user->getId();
-        $credentials = [
-            'last_name' => $Id
-        ];
-        $LocalUser = Sentinel::findByCredentials($credentials);
-        if ($LocalUser === false) // if failed 
+        $LocalUser = Sentinel::getUserRepository()->createModel()->where('last_name', $Id)->first();
+        if ($LocalUser === null) // if failed 
         {
-            var_dump($credentials);
-            var_dump($Id);
-            var_dump($LocalUser);
-            //return \redirect('/register')->with(['good'=>'Теперь вам всего лишь осталось придумать пароль!','email'=>var_dump($LocalUser),'name'=>$name,'GId'=>$Id]);
+            //return 'No user with ffggfsd';   
+            return \redirect('/register')->with(['good'=>'Теперь вам всего лишь осталось придумать пароль!','email'=>$email,'name'=>$name,'GId'=>$Id]);
         }
+        else
+        {
         var_dump($LocalUser);
         Sentinel::login($LocalUser,true);
+        return \redirect('/check');
+        }
 
     }
 

@@ -66,7 +66,15 @@ class RegisterController extends Controller
             'first_name'=>$request->get('name'),
             'last_name' => $request->get('GId'), //yeah I'm to lazy to make new migration
         ];
-        $user = Sentinel::register($credentials);
+        if (!$request->has('Gid')) {
+            $isGoogle = true;
+        }
+        else
+        {
+            $isGoogle = false;
+        }
+
+        $user = Sentinel::register($credentials,$isGoogle);
         $user = json_decode($user);
         dispatch(new SendReminderEmail($user->id));
         return \redirect('/')->with('good','Теперь вы можете войти в систему.');

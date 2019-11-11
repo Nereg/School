@@ -87,9 +87,7 @@ form
 	  	<div class="error">{{$error}}</div>
 	@endforeach
 @endif
-@isset($good)
-<div class="good">{{$good}}</div>
-@endisset
+@if (session('name'))<div class="good">{{ session('good')}}</div>@endif
 				<!--Card content-->
 				<div class="card-body px-lg-5 pt-0">
 					<!-- Form -->
@@ -122,8 +120,13 @@ form
 											<!-- Register -->
 											<p>Уже зарегистрированы ?
           
-                      <a href="{{url('/login')}}">Войти</a>
+                      <a href="{{url('/login')}}">Зарегистрироваться</a>
 											</p>
+											        <!-- Social login -->
+        <p>или зарегистрироваться с помощью:</p>
+        <a type="button" class="btn-floating btn-tw btn-sm" href="{{url('/GoogleRedirect')}}">
+          <i class="fab fa-google"></i>
+        </a>
 										</form>
 										<!-- Form -->
 									</div>
