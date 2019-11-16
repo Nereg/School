@@ -1,4 +1,4 @@
-@extends('Models.MainModel')
+@extends('models.MainModel')
 @section('Title','Востановлнеие пароля')
 @section('content')
 

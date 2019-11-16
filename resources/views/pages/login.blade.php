@@ -1,4 +1,4 @@
-@extends('Models.MainModel')
+@extends('models.MainModel')
 @section('Title','Войти в систему')
 @section('content')
 <style>
