@@ -1,5 +1,5 @@
 @extends('Models.MainModel')
-@section('Title','Зарегистрироваться в системе')
+@section('Title','забыли пароль?')
 @section('content')
 
 <style>
@@ -79,7 +79,7 @@ form
 				<img src="{{url('/').'/img/Logo.svg'}}" class="img-fluid logo text-center">
 				</div>
 				<h5 class="text-center text">
-      Регистрация
+      Забыли пароль?
 	</h5>
 	
 @if (count($errors) > 0)
@@ -91,39 +91,22 @@ form
 				<!--Card content-->
 				<div class="card-body px-lg-5 pt-0">
 					<!-- Form -->
-					<form class="text-center" action="{{url('/register')}}" method="POST">
+					<form class="text-center" action="{{url('/forgot')}}" method="POST">
       {{ csrf_field() }}
                       
-						<!-- name-->
-						<div class="md-form">                      
-							<input type="text" id="materialLoginFormEmail" name="name" class="form-control" required value="@if (session('name')){{ session('name') }}@endif">
-								<label for="materialLoginFormEmail">Имя</label>
-							</div>
 							<!-- Email -->
 							<div class="md-form">
 								<input type="email" id="materialLoginFormEmail" name="email" class="form-control" required value="@if (session('email')){{ session('email') }}@endif">
 									<label for="materialLoginFormEmail">Електронная почта</label>
 								</div>
-								<!-- Password -->
-								<div class="md-form">
-									<input type="password" id="materialLoginFormPassword" name="password" class="form-control" required>
-										<label for="materialLoginFormPassword">Пароль</label>
-									</div>
-									<!-- Password confirmation-->
-									<div class="md-form">
-										<input type="password" id="materialLoginFormPassword" name="passwordConfirm" class="form-control" required>
-											<label for="materialLoginFormPassword">Подтверждение пароля</label>
-									</div>
-									<input type="hidden" name="GId" value="@if (session('GId')){{ session('GId') }}@endif">
 											<!-- Sign in button -->
 											<button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Войти</button>
 											<!-- Register -->
-											<p>Уже зарегистрированы ?
-          
-                      <a href="{{url('/login')}}">Войти</a>
+											<p>        
+                      <a href="{{url('/login')}}">Войти</a> <a href="{{url('/register')}}">Зарегистрироваться</a>
 											</p>
 											        <!-- Social login -->
-        <p>или зарегистрироваться с помощью:</p>
+        <p>или войти с помощью:</p>
         <a type="button" class="btn-floating btn-tw btn-sm" href="{{url('/GoogleRedirect')}}">
           <i class="fab fa-google"></i>
         </a>

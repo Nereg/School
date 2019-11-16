@@ -92,6 +92,7 @@ form
     @isset($error)
     <div class="error">{{$error}}</div>
 @endisset
+@if (session('good'))<div class="good">{{ session('good')}}</div>@endif
     <!--Card content-->
     <div class="card-body px-lg-5 pt-0">
   
@@ -122,7 +123,7 @@ form
           </div>
           <div>
             <!-- Forgot password -->
-            <a href="">Забыли пароль ?</a>
+            <a href="{{url('/forgot')}}">Забыли пароль ?</a>
           </div>
         </div>
   

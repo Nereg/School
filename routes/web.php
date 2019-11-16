@@ -38,6 +38,17 @@ Route::get('/check',function (){
 });
 //Activation route
 Route::get('/activate/{id}/{code}','ActivationController@Activate');
+//Forgot password route
+Route::get('/forgot',function(){
+    return view('pages/forgot');
+});
+//POST for form
+Route::post('/forgot','auth\ResetPasswordController@ResetPassword');
+//restore password route 
+Route::get('/restore/{id}/{code}',function ($id,$code) {
+    return view('pages/restore')->with(['id'=>$id,'code'=>$code]);
+});
+Route::post('/restore','auth\ForgotPasswordController@RestorePassword');
 /* 
 * Social auth routes!
 */

@@ -66,7 +66,7 @@ class RegisterController extends Controller
             'first_name'=>$request->get('name'),
             'last_name' => $request->get('GId'), //yeah I'm to lazy to make new migration
         ];
-        if (!$request->has('Gid')) {
+        if ($request->has('Gid')) {
             $isGoogle = true;
         }
         else

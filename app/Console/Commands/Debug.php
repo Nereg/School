@@ -4,7 +4,9 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Queue;
-use App\Jobs\SendReminderEmail;
+use App\Jobs\SendPasswordEmail;
+use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
+use Cartalyst\Sentinel\Laravel\Facades\Activation;
 
 class Debug extends Command
 {
@@ -39,6 +41,8 @@ class Debug extends Command
      */
     public function handle()
     {
-        $this->info(dispatch(new SendReminderEmail(1)));
+        $user = Sentinel::findUserByid(26);
+        Activation::create($user);
+        dispatch(new SendPasswordEmail(26));
     }
 }
