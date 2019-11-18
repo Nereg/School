@@ -8,3 +8,4 @@ Homestead.yaml
 .env
 .vscode
 /.vscode
+prod.env
