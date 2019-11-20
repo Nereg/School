@@ -1,4 +1,4 @@
-@extends('Models.MailModel')
+@extends('models.MailModel')
 @section('content')
 <h1>Привет, {{$name}}!</h1>
 

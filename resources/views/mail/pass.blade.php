@@ -1,4 +1,4 @@
-@extends('Models.MailModel')
+@extends('models.MailModel')
 @section('Title')
 Востановление пароля    
 @endsection
