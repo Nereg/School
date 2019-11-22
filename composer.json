@@ -8,7 +8,8 @@
         "php": ">=5.6.4",
         "cartalyst/sentinel": "2.0.*",
         "laravel/framework": "5.4.*",
-        "laravel/socialite": "3.*"
+        "laravel/socialite": "3.*",
+        "wildside/mailguneu": "^1.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
