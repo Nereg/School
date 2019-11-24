@@ -41,8 +41,6 @@ class Debug extends Command
      */
     public function handle()
     {
-        $user = Sentinel::findUserByid(26);
-        Activation::create($user);
-        dispatch(new SendPasswordEmail(26));
+        dd($this->dispatch(new SendReminderEmail(18)));
     }
 }
