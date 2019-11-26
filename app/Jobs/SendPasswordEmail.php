@@ -51,7 +51,7 @@ class SendPasswordEmail implements ShouldQueue
                 $user = json_decode($user);
                 $email = $user->email; //get email adress 
                 $name = $user->first_name; //get name of user
-                Mail::to($email)->send(new PasswordEmail($code,$name,$this->Id));
+                var_export(Mail::to($email)->send(new PasswordEmail($code,$name,$this->Id)));
             }
             else
             {

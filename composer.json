@@ -9,6 +9,9 @@
         "cartalyst/sentinel": "2.0.*",
         "laravel/framework": "5.4.*",
         "laravel/socialite": "3.*",
+        "mailgun/mailgun-php": "^3.0",
+        "php-http/guzzle6-adapter": "^2.0",
+        "php-http/message": "^1.8",
         "wildside/mailguneu": "^1.1"
     },
     "require-dev": {

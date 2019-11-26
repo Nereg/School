@@ -34,6 +34,6 @@ class PasswordEmail extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.pass');
+        return $this->from('noreply@mg.schooltest.pp.ua')->view('mail.pass');
     }
 }
