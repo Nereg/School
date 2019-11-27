@@ -76,9 +76,7 @@ class RegisterController extends Controller
 
         $user = Sentinel::register($credentials,$isGoogle);
         $user = json_decode($user);
-        $this->dispatch(new SendReminderEmail($user->id));
-        //Queue::push(new SendReminderEmail($user->id));
-        //dispatch(new SendReminderEmail($user->id));
+        dispatch(new SendReminderEmail($user->id));
         return \redirect('/')->with('good','Теперь вы можете войти в систему.');
     }
 }
