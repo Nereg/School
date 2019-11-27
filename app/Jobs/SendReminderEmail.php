@@ -18,16 +18,6 @@ class SendReminderEmail implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public function genRandStr($length = 6) {
-        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $charactersLength = strlen($characters);
-        $randomString = '';
-        for ($i = 0; $i < $length; $i++) {
-            $randomString .= $characters[rand(0, $charactersLength - 1)];
-        }
-        return $randomString;
-    }
-
     public $Id = 0;
     /**
     * Создание нового экземпляра задачи.
@@ -48,7 +38,7 @@ class SendReminderEmail implements ShouldQueue
     {
         $user = Sentinel::findById($this->Id);
         if (is_null($user)){
-            return new Exeption ('No such user with id'. $this->Id);
+            ($this);
         }
         else
         {

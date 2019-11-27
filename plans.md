@@ -8,3 +8,4 @@
 3. Make unitfied system of on site messages 
 Thats all for now!
 One-click actions for emails ? (https://developers.google.com/gmail/markup/reference/one-click-action)
+Update log structure with https://www.rapid7.com/products/insightops/ 
