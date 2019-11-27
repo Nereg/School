@@ -38,7 +38,7 @@ class SendReminderEmail implements ShouldQueue
     {
         $user = Sentinel::findById($this->Id);
         if (is_null($user)){
-            ($this);
+            report(var_export($this->id));
         }
         else
         {
