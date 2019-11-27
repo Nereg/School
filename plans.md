@@ -7,3 +7,4 @@
 2. Transition to Google Cloud (or another cloud provider) (after making containers!!!!!!!!!!)
 3. Make unitfied system of on site messages 
 Thats all for now!
+One-click actions for emails ? (https://developers.google.com/gmail/markup/reference/one-click-action)

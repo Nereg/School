@@ -3,7 +3,7 @@
 Востановление пароля    
 @endsection
 @section('content')
-<h1>Привет, {{$name}}!</h1>
+<h1 class="text-center header">Привет, {{$name}}!</h1>
 
-<a href="{{url('/')}}/restore/{{$Id}}/{{$code}}">Востановить пароль</a>
+<a href="{{url('/')}}/restore/{{$Id}}/{{$code}}" class="text-center">Востановить пароль</a>
 @endsection
