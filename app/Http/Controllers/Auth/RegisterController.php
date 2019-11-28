@@ -7,6 +7,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
+use Illuminate\Http\Request;
+use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
+use Queue;
+use App\Jobs\SendReminderEmail;
 class RegisterController extends Controller
 {
     /*
@@ -23,13 +27,6 @@ class RegisterController extends Controller
     use RegistersUsers;
 
     /**
-     * Where to redirect users after registration.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/home';
-
-    /**
      * Create a new controller instance.
      *
      * @return void
@@ -40,32 +37,46 @@ class RegisterController extends Controller
     }
 
     /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
+    * Register user 
+    * @param mixed Request
+    */
+    public function Register(Request $request)
     {
-        return Validator::make($data, [
-            'name' => 'required|max:255',
+        $messages = [ // Some errors messages in Russian :\
+            'email.required' => 'Нам надо знать ваш e-mail!',
+            'email.email' => 'Вы ввели неправильную електронную почту!',
+            'email.unique' => 'Кто-то уже зарегистрирован под такой електронной почтой!',
+            'passwordConfirm.same' => 'Подтверждение пароля и пароль не совпадают!',
+            'password.min' => 'Для вашей безопасности пароль должен быть минимум 6 символов!',
+            'required' => 'Вы что-то не ввели!',
+        ];
+        $rules = [ //rules for vallidation
             'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
-        ]);
-    }
+            'password' => 'required|min:6|',
+            'passwordConfirm' => 'same:password'
+        ];
+        $validator = Validator::make($request->all(),$rules,$messages);
+        if ($validator->fails()) {
+            return view('pages/register')
+                        ->withErrors($validator);
+          }
+        $credentials =[
+            'email'=>$request->get('email'),
+            'password'=>$request->get('password'),
+            'first_name'=>$request->get('name'),
+            'last_name' => $request->get('GId'), //yeah I'm to lazy to make new migration
+        ];
+        if ($request->has('Gid')) {
+            $isGoogle = true;
+        }
+        else
+        {
+            $isGoogle = false;
+        }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return User
-     */
-    protected function create(array $data)
-    {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
+        $user = Sentinel::register($credentials,$isGoogle);
+        $user = json_decode($user);
+        Queue::push(new SendReminderEmail($user ->$id));
+        return \redirect('/')->with('good','Теперь вы можете войти в систему.');
     }
 }

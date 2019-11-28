@@ -151,7 +151,8 @@ return [
         Illuminate\Filesystem\FilesystemServiceProvider::class,
         Illuminate\Foundation\Providers\FoundationServiceProvider::class,
         Illuminate\Hashing\HashServiceProvider::class,
-        Illuminate\Mail\MailServiceProvider::class,
+        //Illuminate\Mail\MailServiceProvider::class,
+        Wildside\MailgunEu\MailServiceProvider::class,
         Illuminate\Notifications\NotificationServiceProvider::class,
         Illuminate\Pagination\PaginationServiceProvider::class,
         Illuminate\Pipeline\PipelineServiceProvider::class,
@@ -162,12 +163,12 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-        Cartalyst\Sentinel\Laravel\SentinelServiceProvider::class,
 
         /*
          * Package Service Providers...
          */
-
+        Laravel\Socialite\SocialiteServiceProvider::class,
+        Cartalyst\Sentinel\Laravel\SentinelServiceProvider::class,
         //
 
         /*
@@ -229,6 +230,7 @@ return [
         'Activation' => Cartalyst\Sentinel\Laravel\Facades\Activation::class,
 'Reminder'   => Cartalyst\Sentinel\Laravel\Facades\Reminder::class,
 'Sentinel'   => Cartalyst\Sentinel\Laravel\Facades\Sentinel::class,
+'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 
     ],
 

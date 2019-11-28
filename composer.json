@@ -7,12 +7,17 @@
     "require": {
         "php": ">=5.6.4",
         "cartalyst/sentinel": "2.0.*",
-        "laravel/framework": "5.3.*"
+        "laravel/framework": "5.4.*",
+        "laravel/socialite": "3.*",
+        "mailgun/mailgun-php": "^3.0",
+        "php-http/guzzle6-adapter": "^2.0",
+        "php-http/message": "^1.8",
+        "wildside/mailguneu": "^1.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "0.9.*",
-        "phpunit/phpunit": "~5.0",
+        "phpunit/phpunit": "~5.7",
         "symfony/css-selector": "3.1.*",
         "symfony/dom-crawler": "3.1.*"
     },

@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <title>@yield('Title')</title>
+<base href="{{url('/')}}"></base>
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
   <!-- Bootstrap core CSS -->
@@ -31,7 +32,7 @@
     <div class="container">
 
       <!-- Brand -->
-      <a class="navbar-brand" href="https://mdbootstrap.com/docs/jquery/" target="_blank">
+      <a class="navbar-brand" href="{{url('/')}}" target="_blank">
         <strong>MDB</strong>
       </a>
 
@@ -90,7 +91,7 @@
 @yield('content')
 
   <!--Footer-->
-  <footer class="page-footer text-center font-small mt-4 wow fadeIn">
+  <footer class="page-footer text-center font-small wow fadeIn">
 
     <!--Call to action-->
     <div class="pt-4">

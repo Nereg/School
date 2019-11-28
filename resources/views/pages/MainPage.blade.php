@@ -1,4 +1,4 @@
-@extends('Models.MainModel')
+@extends('models.MainModel')
 @section('Title','Главная страница')
 @section('content')
         <div class="view img-fluid" style="background-image: url('{{url('/').'/img/MainPage.jpg'}}'); background-repeat: no-repeat; background-size: cover;">
