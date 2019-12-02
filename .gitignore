@@ -10,3 +10,7 @@ Homestead.yaml
 /.vscode
 prod.env
 *.env
+docker-compose.yml
+docker/MySQL
+
+
