@@ -12,5 +12,5 @@ prod.env
 *.env
 docker-compose.yml
 docker/MySQL
-
+docker/Nginx/Logs
 
