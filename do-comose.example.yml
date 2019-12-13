@@ -1,0 +1,60 @@
+version: '3.3'
+services:
+    mysql:
+
+        image: mysql:5.7.22
+
+        ports:
+            - "3306:3306"
+
+        container_name: mysql
+        environment:
+
+            - MYSQL_ROOT_PASSWORD=
+            - MYSQL_DATABASE=
+            - MYSQL_USER=
+            - MYSQL_PASSWORD=
+
+
+        volumes:
+            - ./MySQL:/var/lib/mysql
+
+
+    server:
+        image: formapro/nginx-php-fpm
+        container_name: server
+        environment:
+            - NGINX_CONF=/var/www/Nginx.conf
+            - NGINX_WEB_ROOT=/var/www/public
+            - NGINX_PHP_FALLBACK=index.php?$$query_string
+            - NGINX_PHP_LOCATION=/var/www/public/index.php$$
+        #Cause of LONG build time but I think that I can't improve this (LOL timeout I think because of composer install)
+            command: >
+            bash -c "apt-get -y --force-yes update
+            && apt-get -y --force-yes install curl
+            && curl  https://getcomposer.org/installer | php
+            && mv composer.phar /usr/local/bin/composer 
+            && cd /var/www/
+            && clear.sh"
+        ports:
+            - "80:80"
+
+        volumes:
+            - .//:/var/www
+
+        links:
+            - mysql
+
+
+    phpmyadmin:
+
+        image: phpmyadmin/phpmyadmin
+
+        container_name: phpmyadmin
+
+        ports:
+
+            - 8090:80
+
+        links:
+            - mysql:db
