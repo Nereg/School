@@ -1,0 +1,3 @@
+[submodule "PanelTemplate"]
+	path = PanelTemplate
+	url = https://github.com/ColorlibHQ/AdminLTE.git
