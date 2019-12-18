@@ -13,13 +13,7 @@ use App\Mail\PasswordEmail;
 |
 */
 Route::get('/debug',function(){
-    try
-    {
-    dd(Mail::to('okv23200@gmail.com')->send(new PasswordEmail('11234rerw','ghsdfg',1)));
-    }
-    catch(\Exception $e){
-        var_dump($e);
-    }
+    return view('panel/test');
 });
 
 /*
