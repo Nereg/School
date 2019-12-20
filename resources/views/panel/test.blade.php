@@ -1,15 +1,11 @@
 <!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <base href="{{url('/')}}">
-  <title>AdminLTE 3 | Starter</title>
+  <title>Планировщик задач</title>
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
@@ -18,7 +14,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
-<body class="sidebar-mini sidebar-collapse" style="height: auto;">
+<body class="sidebar-mini layout-fixed" style="height: auto;">
   <div class="wrapper">
   
     <!-- Navbar -->
@@ -134,7 +130,47 @@ scratch. This page gets rid of all links and provides the needed markup only.
   
       <!-- Main content -->
       <div class="content">
-        <!-- /.container-fluid -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">To Do</h3>
+            <div class="card-tools">
+              <!-- Buttons, labels, and many other things can be placed here! -->
+              <!-- Here is a label for example -->
+              <span class="badge badge-primary">Label</span>
+            </div>
+            <!-- /.card-tools -->
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <ul class="todo-list ui-sortable" data-widget="todo-list">
+              <li>
+                <!-- drag handle -->
+                <span class="handle ui-sortable-handle">
+                  <i class="fas fa-ellipsis-v"></i>
+                  <i class="fas fa-ellipsis-v"></i>
+                </span>
+                <!-- checkbox -->
+                <div class="icheck-primary d-inline ml-2">
+                  <input type="checkbox" value="" name="todo1" id="todoCheck1">
+                  <label for="todoCheck1"></label>
+                </div>
+                <!-- todo text -->
+                <span class="text">Design a nice theme</span>
+                <!-- General tools such as edit or delete-->
+                <div class="tools">
+                  <i class="fas fa-edit"></i>
+                  <i class="fas fa-trash-o"></i>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <!-- /.card-body -->
+          <div class="card-footer">
+            The footer of the card
+          </div>
+          <!-- /.card-footer -->
+        </div>
+        <!-- /.card -->        
       </div>
       <!-- /.content -->
     </div>
