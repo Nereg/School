@@ -1,7 +1,7 @@
 <?php
 use Illuminate\Http\Request;
 use App\Mail\PasswordEmail;
-
+use App\Http\Controllers;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,7 +16,6 @@ use App\Mail\PasswordEmail;
 /*
 *Just a main page
 */
-
 Route::get('/', function () {
     return view('pages/MainPage');
 });
@@ -58,14 +57,15 @@ Route::get('/restore/{id}/{code}',function ($id,$code) {
     return view('pages/restore')->with(['id'=>$id,'code'=>$code]);
 });
 Route::post('/restore','auth\ForgotPasswordController@RestorePassword');
-
-Route::get('/task','TaskController@test');
-
 /* 
 * Social auth routes!
 */
 Route::any('/GoogleCallback','auth\LoginController@handleProviderCallback');
 
 Route::get('/GoogleRedirect','auth\LoginController@RedirectGoogle');
+/*
+* App routes
+*/
+Route::get('/app','App@MainPage');
 
 

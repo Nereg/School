@@ -2,11 +2,10 @@
 
 namespace App\Http\Middleware;
 
-use Closure;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
-use Cartalyst\Sentinel\Laravel\Facades\Reminder;
+use Closure;
 
-class LoginCheck
+class loginCheck
 {
     /**
      * Handle an incoming request.
@@ -17,15 +16,13 @@ class LoginCheck
      */
     public function handle($request, Closure $next)
     {
-        if ($user = Sentinel::forceCheck())
+        if ($user = Sentinel::check())
         {
             return $next($request);
-            // User is logged in and assigned to the `$user` variable.
         }
         else
         {
-            return \redirect('/login')->with('good','Похоже что вы не вошли в аккаунт!');
-            // User is not logged in
+            return \redirect('/login')->with('error','Кажется вы не вошли в аккаунт!');
         }
     }
 }
