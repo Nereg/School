@@ -130,46 +130,7 @@
   
       <!-- Main content -->
       <div class="content">
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">To Do</h3>
-            <div class="card-tools">
-              <!-- Buttons, labels, and many other things can be placed here! -->
-              <!-- Here is a label for example -->
-              <span class="badge badge-primary">Label</span>
-            </div>
-            <!-- /.card-tools -->
-          </div>
-          <!-- /.card-header -->
-          <div class="card-body">
-            <ul class="todo-list ui-sortable" data-widget="todo-list">
-              <li>
-                <!-- drag handle -->
-                <span class="handle ui-sortable-handle">
-                  <i class="fas fa-ellipsis-v"></i>
-                  <i class="fas fa-ellipsis-v"></i>
-                </span>
-                <!-- checkbox -->
-                <div class="icheck-primary d-inline ml-2">
-                  <input type="checkbox" value="" name="todo1" id="todoCheck1">
-                  <label for="todoCheck1"></label>
-                </div>
-                <!-- todo text -->
-                <span class="text">Design a nice theme</span>
-                <!-- General tools such as edit or delete-->
-                <div class="tools">
-                  <i class="fas fa-edit"></i>
-                  <i class="fas fa-trash-o"></i>
-                </div>
-              </li>
-            </ul>
-          </div>
-          <!-- /.card-body -->
-          <div class="card-footer">
-            The footer of the card
-          </div>
-          <!-- /.card-footer -->
-        </div>
+        @include('panel/ToDoCard')
         <!-- /.card -->        
       </div>
       <!-- /.content -->

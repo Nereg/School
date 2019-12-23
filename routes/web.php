@@ -68,4 +68,12 @@ Route::get('/GoogleRedirect','auth\LoginController@RedirectGoogle');
 */
 Route::get('/app','App@MainPage');
 
+Route::post('/createTask','App@createTask');
+
+Route::post('/deleteTask','App@deleteTask');
+
+Route::get('/form',function () {
+    return view('panel/form');
+});
+
 
