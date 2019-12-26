@@ -21,7 +21,9 @@
           var sec = '{{csrf_token()}}';
           var data = {name:name,description:description,_token:sec};
           var data = $.param(data);
-          $.post('{{url('/createTask')}}',data);
+          $.post('{{url('/createTask')}}',data,function(){
+            location.reload();
+          });
           $('.modal').modal('toggle')
         });
       });
