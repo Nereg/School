@@ -40,7 +40,7 @@ Route::get('/login',function(){
 Route::post('/login','auth\LoginController@Login');
 //checher of logining
 Route::get('/check',function (){
-    return view('pages/check');
+    return redirect('/app');
 });
 
 //Activation route
