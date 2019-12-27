@@ -110,7 +110,7 @@ class LoginController extends Controller
         {
         var_dump($LocalUser);
         Sentinel::login($LocalUser,true);
-        return \redirect('/check');
+        return \redirect('/app');
         }
 
     }
