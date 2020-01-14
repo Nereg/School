@@ -87,10 +87,11 @@
   <footer class="page-footer text-center font-small">
     <!--/.Call to action-->
 
-    <hr class="my-4">
+    
 
     <!-- Social icons -->
-    <div class="pb-4">
+
+    <div class="pb-4" style="padding-top:1.5rem">
       <a href="https://github.com/Nereg/School" target="_blank">
         <i class="fab fa-github mr-3"></i>
       </a>
