@@ -84,7 +84,7 @@
 @yield('content')
 
   <!--Footer-->
-  <footer class="page-footer text-center font-small wow fadeIn">
+  <footer class="page-footer text-center font-small">
     <!--/.Call to action-->
 
     <hr class="my-4">
