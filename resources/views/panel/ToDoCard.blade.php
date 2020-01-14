@@ -27,6 +27,7 @@
           $('.modal').modal('toggle')
         });
       });
+      //style="display: none;" class="done"
     </script>
     <div class="card-header">
       <h3 class="card-title">Планировщик задач</h3>
@@ -42,7 +43,7 @@
       <ul class="todo-list ui-sortable" data-widget="todo-list">
         @if (count($tasks) >= 1)
           @foreach ($tasks as $task)
-          <li id={{$task->id}}>
+          <li id={{$task->id}} >
               <!-- drag handle -->
               <span class="handle ui-sortable-handle">
                   <i class="fas fa-ellipsis-v"></i>

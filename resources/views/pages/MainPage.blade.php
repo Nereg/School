@@ -8,22 +8,16 @@
             <!-- Content -->
             <div class="text-center white-text mx-5 wow fadeIn">
               <h1 class="mb-4">
-                <strong>Learn Bootstrap 4 with MDB</strong>
+                <strong>Плинируйте свое время удобно и просто !</strong>
               </h1>
 
               <p>
-                <strong>Best & free guide of responsive web design</strong>
+                <strong>Лучший бесплатный планировщик задач</strong>
               </p>
 
-              <p class="mb-4 d-none d-md-block">
-                <strong>The most comprehensive tutorial for the Bootstrap 4. Loved by over 500 000 users. Video and
-                  written versions
-                  available. Create your own, stunning website.</strong>
-              </p>
-
-              <a target="_blank" href="https://mdbootstrap.com/education/bootstrap/" class="btn btn-outline-white btn-lg">Start
-                free tutorial
-                <i class="fas fa-graduation-cap ml-2"></i>
+              <!-- нУ ЕБАНА ПРОСТО ДЛЯ КУРСОВОЙ ) сук капс лок бля-->
+              <a target="_blank" href="{{url('/register')}}" class="btn btn-outline-white btn-lg">
+                Попробовать!
               </a>
             </div>
             <!-- Content -->
