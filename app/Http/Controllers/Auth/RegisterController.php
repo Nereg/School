@@ -74,9 +74,17 @@ class RegisterController extends Controller
             $isGoogle = false;
         }
 
-        $user = Sentinel::register($credentials,$isGoogle);
-        $user = json_decode($user);
-        Queue::push(new SendReminderEmail($user->id));
-        return \redirect('/')->with('good','Теперь вы можете войти в систему.');
+        $user = Sentinel::register($credentials,$isGoogle); //if with google activate 
+        if ($isGoogle) // if with google redirect to app
+        {
+            Sentinel::login($user);
+            return \redirect('/app');
+        }
+        else
+        {
+            $user = json_decode($user);
+            Queue::push(new SendReminderEmail($user->id));
+            return \redirect('/')->with('good','Пожалуйста проверьте свою почту');
+                }
     }
 }

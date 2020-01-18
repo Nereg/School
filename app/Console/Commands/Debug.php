@@ -41,6 +41,6 @@ class Debug extends Command
      */
     public function handle()
     {
-        dd(dispatch(new SendPasswordEmail(18)));
+        dd(dispatch(new SendPasswordEmail(2)));
     }
 }
