@@ -38,6 +38,7 @@ class SendPasswordEmail implements ShouldQueue
      */
     public function handle()
     {
+        try{
         $user = Sentinel::findById($this->Id);
         if (is_null($user)){
             return 'No such user with id'. $this->Id;
@@ -51,11 +52,16 @@ class SendPasswordEmail implements ShouldQueue
                 $user = json_decode($user);
                 $email = $user->email; //get email adress 
                 $name = $user->first_name; //get name of user
-                var_export(Mail::to($email)->send(new PasswordEmail($code,$name,$this->Id)));
+                Mail::to($email)->send(new PasswordEmail($code,$name,$this->Id));
             }
             else
             {
             }
         }
+    }
+    catch (\Exception $e)
+    {
+        var_export($e);
+    }
     }
 }

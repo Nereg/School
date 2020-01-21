@@ -85,6 +85,6 @@ class RegisterController extends Controller
             $user = json_decode($user);
             Queue::push(new SendReminderEmail($user->id));
             return \redirect('/')->with('good','Пожалуйста проверьте свою почту');
-                }
+        }
     }
 }
