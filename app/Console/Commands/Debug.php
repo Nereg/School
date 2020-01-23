@@ -7,7 +7,9 @@ use Queue;
 use App\Jobs\SendPasswordEmail;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Cartalyst\Sentinel\Laravel\Facades\Activation;
-
+use Cartalyst\Sentinel\Laravel\Facades\Reminder;
+use Mail;
+use App\Mail\PasswordEmail;
 class Debug extends Command
 {
     /**
@@ -41,6 +43,28 @@ class Debug extends Command
      */
     public function handle()
     {
-        dd(dispatch(new SendPasswordEmail(18)));
+        $id = 2;
+        $reminder = Reminder::create(Sentinel::findById($id));
+        $user = Sentinel::findById($id);
+        if (is_null($user)){
+            return 'No such user with id'. $id;
+        }
+        else
+        {
+            $Reminder = Reminder::exists($user);
+            var_export($Reminder);
+            if($Reminder)
+            {
+                $code = $Reminder->code;
+                $user = json_decode($user);
+                $email = $user->email; //get email adress 
+                $name = $user->first_name; //get name of user
+                Mail::to($email)->send(new PasswordEmail($code,$name,$id));
+            }
+            else
+            {
+                return 'No reminder !';
+            }
+        }
     }
 }

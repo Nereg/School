@@ -1,7 +1,7 @@
 <?php
 use Illuminate\Http\Request;
 use App\Mail\PasswordEmail;
-
+use App\Http\Controllers;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,15 +12,6 @@ use App\Mail\PasswordEmail;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/debug',function(){
-    try
-    {
-    dd(Mail::to('okv23200@gmail.com')->send(new PasswordEmail('11234rerw','ghsdfg',1)));
-    }
-    catch(\Exception $e){
-        var_dump($e);
-    }
-});
 
 /*
 *Just a main page
@@ -28,31 +19,37 @@ Route::get('/debug',function(){
 Route::get('/', function () {
     return view('pages/MainPage');
 });
+
 /*
 * AUTH routes!
 */
+
 //Register route
 Route::get('/register',function (){
     return view('pages/register');
 });
+
 // For POST from form
 Route::post('/register','auth\RegisterController@Register');
 // Login route
 Route::get('/login',function(){
     return view('pages/login');
 });
+
 // Login route for POST
 Route::post('/login','auth\LoginController@Login');
 //checher of logining
 Route::get('/check',function (){
-    return view('pages/check');
+    return redirect('/app');
 });
+
 //Activation route
 Route::get('/activate/{id}/{code}','ActivationController@Activate');
 //Forgot password route
 Route::get('/forgot',function(){
     return view('pages/forgot');
 });
+
 //POST for form
 Route::post('/forgot','auth\ResetPasswordController@ResetPassword');
 //restore password route 
@@ -66,5 +63,17 @@ Route::post('/restore','auth\ForgotPasswordController@RestorePassword');
 Route::any('/GoogleCallback','auth\LoginController@handleProviderCallback');
 
 Route::get('/GoogleRedirect','auth\LoginController@RedirectGoogle');
+/*
+* App routes
+*/
+Route::get('/app','App@MainPage');
+
+Route::post('/createTask','App@createTask');
+
+Route::post('/deleteTask','App@deleteTask');
+
+Route::get('/form',function () {
+    return view('panel/form');
+});
 
 

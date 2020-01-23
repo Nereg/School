@@ -1,29 +1,52 @@
 @extends('models.MainModel')
 @section('Title','Главная страница')
 @section('content')
+<style>
+.error
+{
+  margin-top: 10px;
+  color: white;
+  background-color: rgba(250,0,0,.50);
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,.16),0 2px 10px 0 rgba(0,0,0,.12);
+  border-radius: 10px;
+  align-self: center;
+  padding: 10px;
+}
+.good
+{
+  margin-top: 10px;
+  color: white;
+  background-color: rgba(0,250,0,.50);
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,.16),0 2px 10px 0 rgba(0,0,0,.12);
+  border-radius: 10px;
+  align-self: center;
+  padding: 10px;
+  max-width: 400px;
+}
+</style>
         <div class="view img-fluid" style="background-image: url('{{url('/').'/img/MainPage.jpg'}}'); background-repeat: no-repeat; background-size: cover;">
           <!-- Mask & flexbox options-->
           <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
-
+            @isset($good)
+            <div class="good">{{$good}}</div>
+        @endisset
+        @isset($error)
+        <div class="error">{{$error}}</div>
+    @endisset
             <!-- Content -->
             <div class="text-center white-text mx-5 wow fadeIn">
+              @if (session('good'))<div class="d-flex justify-content-center"><div class="good text-center">{{ session('good')}}</div></div>@endif
               <h1 class="mb-4">
-                <strong>Learn Bootstrap 4 with MDB</strong>
+                <strong>Планируйте свое время удобно и просто !</strong>
               </h1>
 
               <p>
-                <strong>Best & free guide of responsive web design</strong>
+                <strong>Лучший бесплатный планировщик задач</strong>
               </p>
 
-              <p class="mb-4 d-none d-md-block">
-                <strong>The most comprehensive tutorial for the Bootstrap 4. Loved by over 500 000 users. Video and
-                  written versions
-                  available. Create your own, stunning website.</strong>
-              </p>
-
-              <a target="_blank" href="https://mdbootstrap.com/education/bootstrap/" class="btn btn-outline-white btn-lg">Start
-                free tutorial
-                <i class="fas fa-graduation-cap ml-2"></i>
+              <!-- нУ ЕБАНА ПРОСТО ДЛЯ КУРСОВОЙ ) сук капс лок бля-->
+              <a target="_blank" href="{{url('/register')}}" class="btn btn-outline-white btn-lg">
+                Попробовать!
               </a>
             </div>
             <!-- Content -->

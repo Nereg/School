@@ -74,7 +74,7 @@ class LoginController extends Controller
             var_dump($e);
             return view('pages/login')->with('error','Похоже что-то пошло уж совсем не так. пожалуйста обратеитесь ко мне за дальнейшей помощью и прикрепите то что вы видите вверху.');
         }
-        return \redirect('/check');
+        return \redirect('/app');
     }
 
     /*
@@ -110,7 +110,7 @@ class LoginController extends Controller
         {
         var_dump($LocalUser);
         Sentinel::login($LocalUser,true);
-        return \redirect('/check');
+        return \redirect('/app');
         }
 
     }
