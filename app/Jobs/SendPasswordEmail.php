@@ -56,6 +56,7 @@ class SendPasswordEmail implements ShouldQueue
             }
             else
             {
+                
             }
         }
     }
