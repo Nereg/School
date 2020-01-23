@@ -100,7 +100,7 @@ form
 									<label for="materialLoginFormEmail">Електронная почта</label>
 								</div>
 											<!-- Sign in button -->
-											<button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Войти</button>
+											<button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Востановить пароль</button>
 											<!-- Register -->
 											<p>        
                       <a href="{{url('/login')}}">Войти</a> <a href="{{url('/register')}}">Зарегистрироваться</a>
