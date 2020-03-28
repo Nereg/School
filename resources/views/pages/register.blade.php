@@ -116,11 +116,11 @@ form
 									</div>
 									<input type="hidden" name="GId" value="@if (session('GId')){{ session('GId') }}@endif">
 											<!-- Sign in button -->
-											<button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Войти</button>
+											<button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Зарегистрироваться</button>
 											<!-- Register -->
 											<p>Уже зарегистрированы ?
           
-                      <a href="{{url('/login')}}">Зарегистрироваться</a>
+                      <a href="{{url('/login')}}">Войти</a>
 											</p>
 											        <!-- Social login -->
         <p>или зарегистрироваться с помощью:</p>
