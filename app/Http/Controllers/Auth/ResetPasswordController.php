@@ -60,7 +60,7 @@ class ResetPasswordController extends Controller
         {
             $reminder = Reminder::create($user);
             dispatch(new SendPasswordEmail($user->id));
-        return \view('pages/login')->with('good','Проверте вашу почту на наличее письма !');
+            return \view('pages/login')->with('good','Проверте вашу почту на наличее письма !');
 
         }
     }

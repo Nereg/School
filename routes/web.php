@@ -72,6 +72,8 @@ Route::post('/createTask','App@createTask');
 
 Route::post('/deleteTask','App@deleteTask');
 
+Route::post('/updateTask','App@updateTask');
+
 Route::get('/form',function () {
     return view('panel/form');
 });

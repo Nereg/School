@@ -7,6 +7,7 @@ use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Validator;
 use App\Task;
 use \Carbon\Carbon;
+use Illuminate\Support\Facades\Log;
 
 class App extends Controller
 {
@@ -73,8 +74,10 @@ class App extends Controller
     $validator = Validator::make($Request->all(),$rules,$messages);
     $user = Sentinel::check();
     $task = Task::where('Id',$Request->get('id'))->where('userId',$user->id)->get();
-    $task->name = $Request->get('name');
+    Log::debug(var_export($task));
+    $task->name = dump($task);
     $task->description = $Request->get('description');
     $task->save();
+    dd($task);
   }
 }
