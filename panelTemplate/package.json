@@ -121,7 +121,7 @@
     "raphael": "^2.3.0",
     "select2": "^4.0.12",
     "sparklines": "^1.2.0",
-    "summernote": "^0.8.12",
+    "summernote": "^0.8.18",
     "sweetalert2": "^8.19.0",
     "tempusdominus-bootstrap-4": "^5.1.2",
     "toastr": "^2.1.4"
